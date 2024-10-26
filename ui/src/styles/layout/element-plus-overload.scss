@@ -1029,6 +1029,8 @@ form.ks-horizontal {
     background-color: var(--input-bg);
     border-radius: var(--el-border-radius-base);
     height: var(--el-component-size);
+    flex-wrap: nowrap;
+    text-overflow: ellipsis;
 
     .el-radio-button__inner {
         background-color: var(--input-bg);
