@@ -142,7 +142,7 @@
 </script>
 
 <style lang="scss">
-$width: 200px;
+$width: none;
 $active: #A396FF;
 $system: #5BB8FF;
 
