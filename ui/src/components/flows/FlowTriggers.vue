@@ -218,7 +218,7 @@
     import Id from "../Id.vue";
     import TriggerAvatar from "./TriggerAvatar.vue";
 </script>
-
+<!-- fair game -->
 <script>
     import Markdown from "../layout/Markdown.vue";
     import {mapGetters, mapState} from "vuex";
@@ -270,6 +270,7 @@
                 return this.flow.triggers.find(trigger => trigger.id === this.triggerId);
             },
             triggersWithType() {
+                if (this.flow.trigger === undefined) return;
                 let flowTriggers = this.flow.triggers.map(trigger => {
                     return {...trigger, sourceDisabled: trigger.disabled ?? false}
                 })
@@ -290,6 +291,7 @@
                 return this.user.isAllowed(permission.EXECUTION, action ? action : action.READ, this.flow.namespace);
             },
             loadData() {
+                if (!this.trigger) return;
                 this.$store
                     .dispatch("trigger/find", {namespace: this.flow.namespace, flowId: this.flow.id, size: this.triggersWithType.length})
                     .then(triggers => this.triggers = triggers.results);
