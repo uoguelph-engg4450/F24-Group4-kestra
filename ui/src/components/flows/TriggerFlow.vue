@@ -1,5 +1,5 @@
 <template>
-    <div class="trigger-flow-wrapper">
+    <div class="trigger-flow-wrapper" v-if="flow">
         <el-button id="execute-button" :class="{'onboarding-glow': guidedProperties.tourStarted}" :icon="icon.Flash" :type="type" :disabled="isDisabled()" @click="onClick()">
             {{ $t("execute") }}
         </el-button>
@@ -45,6 +45,12 @@
                 </el-form-item>
             </el-form>
         </el-dialog>
+    </div>
+
+    <div v-else class="d-flex flex-grow-1 flex-column align-items-center justify-content-center">
+        <img src="../../../src/assets/no_concurrency.svg" alt="No Triggers" class="img-size my-3">
+        <h4>Your flow doesn't have any Triggers</h4>
+        <span v-html="$t('concurrency-view.desc_no_limit')" />
     </div>
 </template>
 
@@ -144,6 +150,7 @@
                 this.localNamespace = undefined;
             },
             beforeClose(done){
+                if (!this.trigger) return;
                 if(this.guidedProperties.tourStarted) return;
 
                 this.reset();

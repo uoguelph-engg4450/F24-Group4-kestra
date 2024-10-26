@@ -201,7 +201,6 @@
                         name: "triggers",
                         component: FlowTriggers,
                         title: this.$t("triggers"),
-                        disabled: !this.flow.triggers,
                     });
                 }
 
