@@ -158,6 +158,14 @@
                                 <date-ago :inverted="true" :date="scope.row.nextExecutionDate" />
                             </template>
                         </el-table-column>
+                        <el-table-column :label="$t('Information')">
+                            <template #default="scope">
+                                <TriggerAvatar
+                                    :trigger-id="scope.row.id"
+                                    :flow="{flowId: scope.row.flowId, namespace: scope.row.namespace, triggers: [scope.row]}"
+                                />
+                            </template>
+                        </el-table-column>
                         <el-table-column :label="$t('evaluation lock date')">
                             <template #default="scope">
                                 <date-ago :inverted="true" :date="scope.row.evaluateRunningDate" />
@@ -258,6 +266,7 @@
     import SelectTable from "../layout/SelectTable.vue";
     import BulkSelect from "../layout/BulkSelect.vue";
     import Restart from "vue-material-design-icons/Restart.vue";
+    import TriggerAvatar from "../flows/TriggerAvatar.vue";
 </script>
 <script>
     import NamespaceSelect from "../namespace/NamespaceSelect.vue";
